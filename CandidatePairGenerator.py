@@ -390,7 +390,7 @@ def doEverything():
         if 'cop' in m.post_window1('dep_labels',20):
             cop_idx_post_window1 = m.post_window1('dep_labels',20).find('cop')
             return 1 if (('nsubj' in m.mention1(attribute='dep_labels') and (marker_idx_post_window1 == m.post_window1('dep_parents',20)[cop_idx_post_window1]) and ('ROOT' is m.post_window1('dep_labels',20)[marker_idx_post_window1]))) else 0
-    return 0
+        return 0
 
     def LF_suspect(m):
         return -1 if ('suspect' in m.pre_window1('lemmas', 20) or 'suspect' in m.post_window1('lemmas', 20)) else 0
