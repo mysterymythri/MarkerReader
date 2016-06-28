@@ -385,7 +385,7 @@ def doEverything():
                     findMarker = post_window1_lemmas.find(marker)
                     if (findMarker is not -1):
                         marker_idx_post_window1 = findMarker
-                except:
+                 except:
                     pass
              if 'cop' in m.post_window1('dep_labels',20):
                  cop_idx_post_window1 = m.post_window1('dep_labels',20).find('cop')
