@@ -384,15 +384,21 @@ def doEverything():
                 try:
                     # print post_window1_lemmas
                     findMarker = post_window1_lemmas.index(marker)
-
-                    if (findMarker is not -1):
+                    if not findMarker == -1:
                         marker_idx_post_window1 = findMarker
-
                         print marker
-
                 except:
                     pass
-            return 1 if 'cop' in m.post_window1('dep_labels',20) and ('nsubj' in m.mention1(attribute='dep_labels')) else 0
+            if 'cop' in m.post_window1('dep_labels',20):
+                try:
+                    cop_idx_post_window1 = m.post_window1('dep_labels',20).index('cop')
+                    print m.post_window1('dep_parents',20)[cop_idx_post_window1]
+                except:
+                    pass
+                print marker_idx_post_window
+                print '\n'
+                
+                return 1 if ('nsubj' in m.mention1(attribute='dep_labels')) and (marker_idx_post_window1 + 1 == m.post_window1('dep_parents',20)[cop_idx_post_window1]) else 0
         return 0
 
     def LF_suspect(m):
