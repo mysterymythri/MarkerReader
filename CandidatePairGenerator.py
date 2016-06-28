@@ -378,7 +378,7 @@ def doEverything():
         post_window1_lemmas = m.post_window1('lemmas',20)
         pre_window2_lemmas = m.pre_window2('lemmas',20)
         if ('biomarker' in post_window1_lemmas and 'biomarker' in pre_window2_lemmas) or ('marker' in post_window1_lemmas and 'marker' in pre_window2_lemmas) or ('indicator' in post_window1_lemmas and 'indicator' in pre_window2_lemmas):
-            return 1 if 'cop' in m.post_window1('dep_labels',20) else 0 
+            return 1 if 'cop' in m.post_window1('dep_labels',20) and ('nsubj' in m.mention1(attribute='dep_labels') else 0 
         return 0
 
     def LF_suspect(m):
