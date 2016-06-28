@@ -40,13 +40,13 @@ def doEverything():
             return -1
 
     def LF_keyword(m):
-    #     for word in keyWords:
-    #         if (word in m.post_window1('lemmas', 20)) and (word in m.pre_window2('lemmas', 20)):
-    #             if presenceOfNot(m):
-    #                 return -1
-    #             else:
-    #                 return 1
-    #
+        #     for word in keyWords:
+        #         if (word in m.post_window1('lemmas', 20)) and (word in m.pre_window2('lemmas', 20)):
+        #             if presenceOfNot(m):
+        #                 return -1
+        #             else:
+        #                 return 1
+        #
         return 0
 
     # def LF_associate(m):
@@ -60,7 +60,7 @@ def doEverything():
     # # 4
     def LF_marker(m):
         return 1 if ('marker' in m.post_window1('lemmas', 20) or 'biomarker' in m.post_window1('lemmas', 20)) and (
-        'marker' in m.post_window2('lemmas', 20) or 'biomarker' in m.post_window2('lemmas', 20)) else 0
+            'marker' in m.post_window2('lemmas', 20) or 'biomarker' in m.post_window2('lemmas', 20)) else 0
     # # 5
     # def LF_elevated(m):
     #     return 1 if ('elevated' in m.post_window1('lemmas', 20)) and ('elevated' in m.pre_window2('lemmas', 20)) else 0
@@ -258,8 +258,8 @@ def doEverything():
     # 57
     def LF_doesNotShow(m):
         return -1 if (
-        'does' in m.post_window1('lemmas', 20) and 'not' in m.post_window1('lemmas', 20) and 'show' in m.post_window2(
-            'lemmas', 20)) else 0
+            'does' in m.post_window1('lemmas', 20) and 'not' in m.post_window1('lemmas', 20) and 'show' in m.post_window2(
+                'lemmas', 20)) else 0
 
     # 58
     def LF_notLinked(m):
@@ -277,14 +277,14 @@ def doEverything():
     # 62
     def LF_doesNotSignify(m):
         return -1 if (
-        'does' in m.post_window1('lemmas', 20) and 'not' in m.post_window1('lemmas', 20) and 'signify' in m.post_window(
-            'lemmas', 20)) else 0
+            'does' in m.post_window1('lemmas', 20) and 'not' in m.post_window1('lemmas', 20) and 'signify' in m.post_window(
+                'lemmas', 20)) else 0
 
     # 63
     def LF_doesNotIndicate(m):
         return -1 if (
-        'does' in m.post_window1('lemmas', 20) and 'not' in m.post_window1('lemmas', 20) and 'indicate' in m.post_window(
-            'lemmas', 20)) else 0
+            'does' in m.post_window1('lemmas', 20) and 'not' in m.post_window1('lemmas', 20) and 'indicate' in m.post_window(
+                'lemmas', 20)) else 0
 
         # 64
     def LF_doesNotImply(m):
@@ -321,7 +321,7 @@ def doEverything():
         return 1 if (
             'is' in m.post_window1('lemmas', 20) and 'an' in m.post_window1('lemmas', 20) and 'interesting' in m.post_window1(
                 'lemmas', 20) and 'target' in m.post_window1('lemmas', 20) and 'is' in m.pre_window2('lemmas', 20) and 'an' in
-                m.pre_window2('lemmas', 20) and 'interesting' in m.pre_window2('lemmas', 20) and 'target' in m.pre_window2(
+            m.pre_window2('lemmas', 20) and 'interesting' in m.pre_window2('lemmas', 20) and 'target' in m.pre_window2(
                 'lemmas', 20)) else 0
     # 70
     def LF_discussion(m):
@@ -350,10 +350,10 @@ def doEverything():
         return 1 if (
             'treatment' in m.pre_window1('lemmas', 20) or 'treatment' in m.post_window1('lemmas', 20)) else 0
     def LF_auxpass(m):
-            if not ('auxpass' and 'aux') in (m.post_window1('dep_labels', 20) and m.pre_window2('dep_labels', 20)):
-                return -1
-            else:
-                return 0
+        if not ('auxpass' and 'aux') in (m.post_window1('dep_labels', 20) and m.pre_window2('dep_labels', 20)):
+            return -1
+        else:
+            return 0
     def LF_inbetween(m):
         # with open('diseaseDatabase.pickle', 'rb') as f:
         #     diseaseDictionary = pickle.load(f)
@@ -375,22 +375,22 @@ def doEverything():
         return 1 if ('patient' in m.post_window2('lemmas', 3)) and ('with' in m.post_window2('lemmas',2)) else 0
 
     def LF_isaBiomarker(m):
-         post_window1_lemmas = m.post_window1('lemmas',20)
-         pre_window2_lemmas = m.pre_window2('lemmas',20)
-         if ('biomarker' in post_window1_lemmas and 'biomarker' in pre_window2_lemmas) or ('marker' in post_window1_lemmas and 'marker' in pre_window2_lemmas) or ('indicator' in post_window1_lemmas and 'indicator' in pre_window2_lemmas):
-             marker_idx_post_window1 = -1
-             markers = ['biomarker','marker','indicator']
-             for marker in markers:
-                 try:
+        post_window1_lemmas = m.post_window1('lemmas',20)
+        pre_window2_lemmas = m.pre_window2('lemmas',20)
+        if ('biomarker' in post_window1_lemmas and 'biomarker' in pre_window2_lemmas) or ('marker' in post_window1_lemmas and 'marker' in pre_window2_lemmas) or ('indicator' in post_window1_lemmas and 'indicator' in pre_window2_lemmas):
+            marker_idx_post_window1 = -1
+            markers = ['biomarker','marker','indicator']
+            for marker in markers:
+                try:
                     findMarker = post_window1_lemmas.find(marker)
                     if (findMarker is not -1):
                         marker_idx_post_window1 = findMarker
-                 except:
+                except:
                     pass
-             if 'cop' in m.post_window1('dep_labels',20):
-                 cop_idx_post_window1 = m.post_window1('dep_labels',20).find('cop')
-                 return 1 if (('nsubj' in m.mention1(attribute='dep_labels') and (marker_idx_post_window1 == m.post_window1('dep_parents',20)[cop_idx_post_window1]) and ('ROOT' is m.post_window1('dep_labels',20)[marker_idx_post_window1]))) else 0
-        return 0
+        if 'cop' in m.post_window1('dep_labels',20):
+            cop_idx_post_window1 = m.post_window1('dep_labels',20).find('cop')
+            return 1 if (('nsubj' in m.mention1(attribute='dep_labels') and (marker_idx_post_window1 == m.post_window1('dep_parents',20)[cop_idx_post_window1]) and ('ROOT' is m.post_window1('dep_labels',20)[marker_idx_post_window1]))) else 0
+    return 0
 
     def LF_suspect(m):
         return -1 if ('suspect' in m.pre_window1('lemmas', 20) or 'suspect' in m.post_window1('lemmas', 20)) else 0
