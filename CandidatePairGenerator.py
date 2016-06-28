@@ -395,7 +395,7 @@ def doEverything():
                     print m.post_window1('dep_parents',20)[cop_idx_post_window1]
                 except:
                     pass
-                print marker_idx_post_window
+                print marker_idx_post_window1
                 print '\n'
                 
                 return 1 if ('nsubj' in m.mention1(attribute='dep_labels')) and (marker_idx_post_window1 + 1 == m.post_window1('dep_parents',20)[cop_idx_post_window1]) else 0
