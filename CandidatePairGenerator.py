@@ -382,9 +382,12 @@ def doEverything():
             markers = ['biomarker','marker','indicator']
             for marker in markers:
                 try:
-                    findMarker = post_window1_lemmas.find(marker)
+                    # print post_window1_lemmas
+                    findMarker = post_window1_lemmas.index(marker)
+
                     if (findMarker is not -1):
                         marker_idx_post_window1 = findMarker
+
                         print marker
 
                 except:
@@ -403,7 +406,7 @@ def doEverything():
            LF_possible, LF_explore, LF_key, LF_investigate, LF_yetToBeConfirmed, LF_notAssociated, LF_notRelated,
            LF_doesNotShow, LF_notLinked, LF_notCorrelated, LF_disprove, LF_doesNotSignify,
            LF_doesNotIndicate, LF_doesNotImply, LF_studies, LF_studies2, LF_studies3, LF_studies4, LF_interesting,
-           LF_discussion, LF_conclusion, LF_recently, LF_induced, LF_treatment, LF_isaBiomarker, LF_marker, LF_suspect, LF_mark]
+           LF_discussion, LF_conclusion, LF_recently, LF_induced, LF_treatment, LF_isaBiomarker, LF_marker, LF_suspect, LF_mark, LF_People]
     gts = []
     uids = []
     for tuple in mindtaggerToTruth("tags4.tsv"):
