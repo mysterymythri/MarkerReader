@@ -392,9 +392,7 @@ def doEverything():
             if 'cop' in m.post_window1('dep_labels',20):
                 try:
                     cop_idx_post_window1 = m.post_window1('dep_labels',20).index('cop')
-                    print "cop index:"
-                    print cop_idx_post_window1
-                    print m.post_window1('dep_parents',20)
+                    print m.post_window1('dep_parents',20)[cop_idx_post_window1]
                 except:
                     pass
                 print marker_idx_post_window1
