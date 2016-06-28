@@ -373,7 +373,7 @@ def doEverything():
         return 0
     def LF_patientsWith(m):
         return 1 if ('patient' in m.post_window2('lemmas', 3)) and ('with' in m.post_window2('lemmas',2)) else 0
-    
+
     def LF_isaBiomarker(m):
         # post_window1_lemmas = m.post_window1('lemmas',20)
         # pre_window2_lemmas = m.pre_window2('lemmas',20)
@@ -388,12 +388,19 @@ def doEverything():
         #         cop_idx_post_window1 = m.post_window1('dep_labels',20).find('cop')
         #         return 1 if (('nsubj' in m.mention1(attribute='dep_labels') and (marker_idx_post_window1 == m.post_window1('dep_parents',20)[cop_idx_post_window1]) and ('ROOT' is m.post_window1('dep_labels',20)[marker_idx_post_window1]))) else 0
         return 0
-        
+
+    def LF_suspect(m):
+        return -1 if ('suspect' in m.pre_window1('lemmas', 20) or 'suspect' in m.post_window1('lemmas', 20)) else 0
+
+
+
+    def LF_mark(m):
+        return -1 if ( 'vmod' in m.post_window1('dep_labels', 20) and 'mark' in m.post_window1('dep_labels', 20) or'vmod' in m.pre_window1('dep_labels', 20) and 'mark' in m.pre_window1('dep_labels', 20)) else 0
     LFs = [LF_investigate, LF_key,  LF_distance, LF_keyword, LF_auxpass, LF_inbetween,
            LF_possible, LF_explore, LF_key, LF_investigate, LF_yetToBeConfirmed, LF_notAssociated, LF_notRelated,
            LF_doesNotShow, LF_notLinked, LF_notCorrelated, LF_disprove, LF_doesNotSignify,
            LF_doesNotIndicate, LF_doesNotImply, LF_studies, LF_studies2, LF_studies3, LF_studies4, LF_interesting,
-           LF_discussion, LF_conclusion, LF_recently, LF_induced, LF_treatment, LF_isaBiomarker, LF_marker]
+           LF_discussion, LF_conclusion, LF_recently, LF_induced, LF_treatment, LF_isaBiomarker, LF_marker, LF_suspect, LF_mark]
     gts = []
     uids = []
     for tuple in mindtaggerToTruth("tags4.tsv"):
