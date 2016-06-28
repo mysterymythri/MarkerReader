@@ -3,7 +3,7 @@ import BiomarkerCandidateGenerator, DiseaseCandidateGenerator, pickle
 
 
 def doEverything():
-    parser = DocParser('thing.txt', ftreader=TextReader())
+    parser = DocParser('AGR2_blood_biomarker.txt', ftreader=TextReader())
     sentences = parser.parseDocSentences()
 
     BM = BiomarkerCandidateGenerator.generateBiomarkerCandidates()
@@ -58,9 +58,9 @@ def doEverything():
     # def LF_express(m):
     #     return 1 if ('express' in m.post_window1('lemmas', 20)) and ('express' in m.pre_window2('lemmas', 20)) else 0
     # # 4
-    # def LF_marker(m):
-    #     return 1 if ('marker' in m.post_window1('lemmas', 20) or 'biomarker' in m.post_window1('lemmas', 20)) and (
-    #     'marker' in m.post_window2('lemmas', 20) or 'biomarker' in m.post_window2('lemmas', 20)) else 0
+    def LF_marker(m):
+        return 1 if ('marker' in m.post_window1('lemmas', 20) or 'biomarker' in m.post_window1('lemmas', 20)) and (
+        'marker' in m.post_window2('lemmas', 20) or 'biomarker' in m.post_window2('lemmas', 20)) else 0
     # # 5
     # def LF_elevated(m):
     #     return 1 if ('elevated' in m.post_window1('lemmas', 20)) and ('elevated' in m.pre_window2('lemmas', 20)) else 0
@@ -372,36 +372,31 @@ def doEverything():
         #         return -1
         return 0
     def LF_patientsWith(m):
-        return 1 if ('patient' in m.post_window2('lemmas', 3)) and ('with' in m.post_window2('lemmas',2) else 0
+        return 1 if ('patient' in m.post_window2('lemmas', 3)) and ('with' in m.post_window2('lemmas',2)) else 0
     
-    def LF_isaBiomarker(m)
-        post_window1_lemmas = m.post_window1('lemmas',20)
-        pre_window2_lemmas = m.pre_window2('lemmas',20)
-        
-        if ('biomarker' in post_window1_lemmas and 'biomarker' in pre_window2_lemmas) or
-        ('marker' in post_window1_lemmas and 'marker' in pre_window2_lemmas) or
-        ('indicator' in post_window1_lemmas and 'indicator' in pre_window2_lemmas):
-            marker_idx_post_window1 = -1
-            markers = ['biomarker','marker','indicator]
-            for marker in markers
-                findMarker = post_window1.find(marker)
-                if (findMarker is not -1)
-                    marker_idx_post_window1 = findMarker
-            if 'cop' in m.post_window1('dep_labels',20):
-                cop_idx_post_window1 = m.post_window1('dep_labels',20).find('cop')
-                return 1 if (('nsubj' in m.mention1(attribute='dep_labels') and
-                (marker_idx_post_window1 == m.post_window1('dep_parents',20)[cop_idx_post_window1]) and 
-                ('ROOT' is m.post_window1('dep_labels',20)[marker_idx_post_window1])) else 0
-            
+    def LF_isaBiomarker(m):
+        # post_window1_lemmas = m.post_window1('lemmas',20)
+        # pre_window2_lemmas = m.pre_window2('lemmas',20)
+        # if ('biomarker' in post_window1_lemmas and 'biomarker' in pre_window2_lemmas) or ('marker' in post_window1_lemmas and 'marker' in pre_window2_lemmas) or ('indicator' in post_window1_lemmas and 'indicator' in pre_window2_lemmas):
+        #     marker_idx_post_window1 = -1
+        #     markers = ['biomarker','marker','indicator']
+        #     for marker in markers:
+        #         findMarker = post_window1_lemmas.find(marker)
+        #         if (findMarker is not -1):
+        #             marker_idx_post_window1 = findMarker
+        #     if 'cop' in m.post_window1('dep_labels',20):
+        #         cop_idx_post_window1 = m.post_window1('dep_labels',20).find('cop')
+        #         return 1 if (('nsubj' in m.mention1(attribute='dep_labels') and (marker_idx_post_window1 == m.post_window1('dep_parents',20)[cop_idx_post_window1]) and ('ROOT' is m.post_window1('dep_labels',20)[marker_idx_post_window1]))) else 0
+        return 0
         
     LFs = [LF_investigate, LF_key,  LF_distance, LF_keyword, LF_auxpass, LF_inbetween,
            LF_possible, LF_explore, LF_key, LF_investigate, LF_yetToBeConfirmed, LF_notAssociated, LF_notRelated,
            LF_doesNotShow, LF_notLinked, LF_notCorrelated, LF_disprove, LF_doesNotSignify,
            LF_doesNotIndicate, LF_doesNotImply, LF_studies, LF_studies2, LF_studies3, LF_studies4, LF_interesting,
-           LF_discussion, LF_conclusion, LF_recently, LF_induced, LF_treatment]
+           LF_discussion, LF_conclusion, LF_recently, LF_induced, LF_treatment, LF_isaBiomarker, LF_marker]
     gts = []
     uids = []
-    for tuple in mindtaggerToTruth("tags5.tsv"):
+    for tuple in mindtaggerToTruth("tags4.tsv"):
         uids.append(tuple[0])
         gts.append(tuple[1])
     otherModel.update_gt(gts, uids=uids)
@@ -435,4 +430,4 @@ def mindtaggerToTruth(filename):
                      list[count + 1] + "', '" + list[count + 2] + "']", number))
         count += 7
     return uids
-doEverything()
+# doEverything()
