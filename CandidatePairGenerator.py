@@ -378,18 +378,7 @@ def doEverything():
         post_window1_lemmas = m.post_window1('lemmas',20)
         pre_window2_lemmas = m.pre_window2('lemmas',20)
         if ('biomarker' in post_window1_lemmas and 'biomarker' in pre_window2_lemmas) or ('marker' in post_window1_lemmas and 'marker' in pre_window2_lemmas) or ('indicator' in post_window1_lemmas and 'indicator' in pre_window2_lemmas):
-            marker_idx_post_window1 = -1
-            markers = ['biomarker','marker','indicator']
-            for marker in markers:
-                try:
-                    findMarker = post_window1_lemmas.find(marker)
-                    if (findMarker is not -1):
-                        marker_idx_post_window1 = findMarker
-                except:
-                    pass
-        if 'cop' in m.post_window1('dep_labels',20):
-            cop_idx_post_window1 = m.post_window1('dep_labels',20).find('cop')
-            return 1 if (('nsubj' in m.mention1(attribute='dep_labels') and (marker_idx_post_window1 == m.post_window1('dep_parents',20)[cop_idx_post_window1]) and ('ROOT' is m.post_window1('dep_labels',20)[marker_idx_post_window1]))) else 0
+            return 1 if 'cop' in m.post_window1('dep_labels',20) else 0 
         return 0
 
     def LF_suspect(m):
