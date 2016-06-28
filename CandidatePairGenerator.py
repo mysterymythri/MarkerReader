@@ -378,6 +378,16 @@ def doEverything():
         post_window1_lemmas = m.post_window1('lemmas',20)
         pre_window2_lemmas = m.pre_window2('lemmas',20)
         if ('biomarker' in post_window1_lemmas and 'biomarker' in pre_window2_lemmas) or ('marker' in post_window1_lemmas and 'marker' in pre_window2_lemmas) or ('indicator' in post_window1_lemmas and 'indicator' in pre_window2_lemmas):
+            marker_idx_post_window1 = -1
+            markers = ['biomarker','marker','indicator']
+            for marker in markers:
+                try:
+                    findMarker = post_window1_lemmas.find(marker)
+                    if (findMarker is not -1):
+                        marker_idx_post_window1 = findMarker
+                except:
+                    pass
+            print marker
             return 1 if 'cop' in m.post_window1('dep_labels',20) and ('nsubj' in m.mention1(attribute='dep_labels') else 0 
         return 0
 
