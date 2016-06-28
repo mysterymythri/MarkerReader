@@ -385,10 +385,10 @@ def doEverything():
                     findMarker = post_window1_lemmas.find(marker)
                     if (findMarker is not -1):
                         marker_idx_post_window1 = findMarker
-                        print marker
                 except:
                     pass
-            return 1 if 'cop' in m.post_window1('dep_labels',20) and ('nsubj' in m.mention1(attribute='dep_labels')) else 0 
+            print marker
+            return 1 if 'cop' in m.post_window1('dep_labels',20) and ('nsubj' in m.mention1(attribute='dep_labels')) else 0
         return 0
 
     def LF_suspect(m):
