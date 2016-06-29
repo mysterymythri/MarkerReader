@@ -36,14 +36,6 @@ def parseDocIntoWords():
 
 def biomarkerGenerator(words):
 
-    #markerDatabase = ['AGR2', 'PSA', 'CGA']
-
-    markerDatabase = []
-
-    diseaseDatabase = ["crpc", "prostate cancer", "prostate cancer cells", "ne-crpc", "metastatic",
-
-                       "metastatic prostate cancer", "crpc-ne"]
-
     with open('markerData.pickle', 'rb') as f:
 
         markerDatabase = pickle.load(f)
