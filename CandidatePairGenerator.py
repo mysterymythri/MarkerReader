@@ -397,7 +397,8 @@ def doEverything():
                     print cop_idx_post_window1
                 except:
                     pass
-                print m.post_window1('dep_parents',5)
+                print m.post_window1('lemmas',12)
+                print m.post_window1('dep_parents',12)
                 print marker_idx_post_window1
                 print '\n'
                 
