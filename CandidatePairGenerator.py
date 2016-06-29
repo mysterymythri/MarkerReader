@@ -402,7 +402,7 @@ def doEverything():
                 print marker_idx_post_window1
                 print '\n'
                 
-                return 1 if ('nsubj' in m.mention1(attribute='dep_labels')) and (marker_idx_post_window1 + 1 == m.post_window1('dep_parents',20)[cop_idx_post_window1]) else 0
+                return 1 if ('nsubj' in m.mention1(attribute='dep_labels')) and ('ROOT' is m.post_window1('dep_labels',marker_idx_post_window1)[marker_idx_post_window1]) and (marker_idx_post_window1-cop_idx_post_window1 < 4)  else 0
         return 0
 
     def LF_suspect(m):
