@@ -391,18 +391,21 @@ def doEverything():
                     pass
             if 'cop' in m.post_window1('dep_labels',20):
                 try:
-                    
                     cop_idx_post_window1 = m.post_window1('dep_labels',20).index('cop')
-                    print "cop"
-                    print cop_idx_post_window1
                 except:
                     pass
-                print m.post_window1('lemmas',12)
-                print m.post_window1('dep_parents',12)
+                
+                print "MarkerIdx:"
                 print marker_idx_post_window1
+                print "ROOTIdx:"
+                try:
+                    print  m.post_window1('dep_labels',marker_idx_post_window1)
+                    print  m.post_window1('dep_labels',marker_idx_post_window1).index('ROOT')
+                except:
+                    pass
                 print '\n'
                 
-                return 1 if ('nsubj' in m.mention1(attribute='dep_labels')) and ('ROOT' is m.post_window1('dep_labels',marker_idx_post_window1)[marker_idx_post_window1]) and (marker_idx_post_window1-cop_idx_post_window1 < 4)  else 0
+                return 1 if ('nsubj' in m.mention1(attribute='dep_labels')) and (marker_idx_post_window1-cop_idx_post_window1 < 4)  else 0
         return 0
 
     def LF_suspect(m):
