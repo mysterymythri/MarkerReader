@@ -395,9 +395,9 @@ def doEverything():
                     cop_idx_post_window1 = m.post_window1('dep_labels',20).index('cop')
                     print "cop"
                     print cop_idx_post_window1
-                    print m.post_window1('dep_parents',20)
                 except:
                     pass
+                print m.post_window1('dep_parents',5)
                 print marker_idx_post_window1
                 print '\n'
                 
