@@ -47,7 +47,7 @@ def biomarkerGenerator(words):
 
     #Name(Syntax) filter:
 
-    up_regex = RegexNgramMatch(label='Upper', regex_pattern=r'(^|(?<=\s))[A-Za-z][A-Z1-6-]{2,}', ignore_case=False,match_attrib='words')
+    up_regex = RegexNgramMatch(label='Upper', regex_pattern=r'(^|(?<=\s))[A-Za-z][A-Z1-9-]{2,}', ignore_case=False,match_attrib='words')
 
     CE = Union(up_regex, gene_dm)
 
