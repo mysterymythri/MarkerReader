@@ -29,7 +29,7 @@ def doEverything():
     def LF_units(m):
         found = False
         for unit in all_prefixes_units:
-            if unit in m.post_window2('lemmas',4):
+            if unit[0] in m.post_window2('lemmas',4) or unit[1] in m.post_window2('lemmas',4):
                 found = True
         if found:
             return 1
