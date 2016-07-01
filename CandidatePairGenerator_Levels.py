@@ -25,11 +25,18 @@ def doEverything():
             return 0
         else:
             return -1
-
-
-
-    def LF_mark(m):
-        return -1 if ( 'vmod' in m.post_window1('dep_labels', 20) and 'mark' in m.post_window1('dep_labels', 20) or'vmod' in m.pre_window1('dep_labels', 20) and 'mark' in m.pre_window1('dep_labels', 20)) else 0
+    
+    def LF_units(m):
+        found = False
+        for unit in all_prefixes_units:
+            if unit in m.post_window2('lemmas',4):
+                found = True
+        if found:
+            return 1
+        else:
+            return 0
+        
+    
     LFs = [LF_investigate, LF_key,  LF_distance, LF_keyword, LF_auxpass, LF_inbetween,
            LF_possible, LF_explore, LF_key, LF_investigate, LF_yetToBeConfirmed, LF_notAssociated, LF_notRelated,
            LF_doesNotShow, LF_notLinked, LF_notCorrelated, LF_disprove, LF_doesNotSignify,
