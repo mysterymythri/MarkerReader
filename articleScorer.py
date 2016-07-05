@@ -32,7 +32,7 @@ def extractTitle(sentences_Article):
 
 
 def articleScorer(filename, biomarkerName, diseaseName, numOfRelations, articleMentionsRank):
-    sentences_Article = parseDocIntoWords(_filename)
+    sentences_Article = parseDocIntoWords(filename)
     title = extractTitle(sentences_Article)
     titleScore = 0
     relationsRatScore = 0
