@@ -15,7 +15,7 @@ def parseDocIntoWords():
 
 
 def extractTitle(sentences_Article):
-    numWordsToExtract = 40
+    numWordsToExtract = 50
     wordsExtracted = 0
     indexInSentence = 0
     currSentenceWords = ''
