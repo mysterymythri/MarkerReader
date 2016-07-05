@@ -3,8 +3,8 @@ from ddlite import *
 from ddlite import *
 import unicodedata
 
-def parseDocIntoWords():
-    filename = "AGR2_blood_biomarker.txt"
+def parseDocIntoWords(_filename):
+    filename = _filename
     text = open(filename, "r").read()
     sentence_parser = SentenceParser()
     list = sentence_parser.parse(text, 1)
@@ -31,8 +31,8 @@ def extractTitle(sentences_Article):
     return unicodedata.normalize('NFKD', ' '.join(unicode_title)).encode('ascii', 'ignore')
 
 
-def articleScorer(biomarkerName, diseaseName, numOfRelations, articleMentionsRank):
-    sentences_Article = parseDocIntoWords()
+def articleScorer(filename, biomarkerName, diseaseName, numOfRelations, articleMentionsRank):
+    sentences_Article = parseDocIntoWords(_filename)
     title = extractTitle(sentences_Article)
     titleScore = 0
     relationsRatScore = 0
