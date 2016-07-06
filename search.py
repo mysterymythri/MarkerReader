@@ -4,29 +4,24 @@ from ddlite import *
 
 authorScores = [0]
 
-def parseDocIntoWords():
-    filename = "AGR2_blood_biomarker.txt"
+def parseDocIntoWords(_filename):
+    filename = _filename
     text = open(filename, "r").read()
-    # print "OPENING FILE"
     sentence_parser = SentenceParser()
     list = sentence_parser.parse(text, 1)
-    # print "PARSED TEXT"
     words = []
-    # print "GETTING ALL WORDS"
-    poses = []
     for sentence in list:
         words.append(sentence)
-    # print words
     return words
 
 def getCitations():
-    complexThings = parseDocIntoWords()
+    complexThings = parseDocIntoWords("try.txt")
     allWords = []
     for complexthing in complexThings:
        for word in complexthing.words:
            allWords.append(word)
     #normalized_Pos = unicodedata.normalize('NFKD', allWords[0]).encode('ascii', 'ignore')
-    references = "REFERENCES"
+    references = "References"
     refIndex = allWords.index(references)
     print refIndex
     return allWords[refIndex + 1:]
@@ -39,15 +34,15 @@ def getAuthors():
     citations = getCitations()
     capitalIndex = 0
     authorList = []
-
+    commasIndex = citations.index(",")
     #loops through all words, finds a capital letter and a comma, adds string between them to a list of authors
     for x in citations:
         true = re.search('(?<=[A-Z])//w+', x)
         if true:
             capitalIndex = citations.index(x)
-        if ("," in citations[0:]):
+        if (capitalIndex == commasIndex-1 and "," in citations[0:]):
             commasIndex = citations.index(",")
-        authorList.append(citations[capitalIndex, commasIndex])
+        authorList.append(citations[capitalIndex:commasIndex - 1])
     return authorList
 
 def updateScores():
