@@ -20,7 +20,6 @@ with open('AGR2_blood_biomarker.txt') as f:
 
             fout.writelines(g)
 
-
 allWords = []
     files = []
     file_base_name = "small_file_"
