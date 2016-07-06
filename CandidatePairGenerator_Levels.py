@@ -8,10 +8,11 @@ def doEverything():
     sentences = parser.parseDocSentences()
 
     BM = BiomarkerCandidateGenerator.generateBiomarkerCandidates()
-    LM = levels_extractor.levelsGenerator()
+    L = LevelsCandidateGenerator.levelsGenerator()
+    M = MeasurementCandidateGenerator.measurementGenerator(L)
     
 
-    possiblePairs = Relations(sentences, BM, LM)
+    possiblePairs = Relations(sentences, BM, L, M)
     feats = possiblePairs.extract_features()
     otherModel = DDLiteModel(possiblePairs, feats)
     negationWords = ["not", "nor", "neither"]
