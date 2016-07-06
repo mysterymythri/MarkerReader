@@ -20,8 +20,11 @@ def parseDocIntoWords():
     return words
 
 def getCitations():
-    allWords = parseDocIntoWords()
-    print allWords
+    complexThings = parseDocIntoWords()
+    allWords = []
+    for complexthing in complexThings:
+       for word in complexthing.words:
+           allWords.append(word)
     #normalized_Pos = unicodedata.normalize('NFKD', allWords[0]).encode('ascii', 'ignore')
     references = "REFERENCES"
     refIndex = allWords.index(references)
