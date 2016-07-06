@@ -1,0 +1,12 @@
+allWords = []
+    files = []
+    file_base_name = "small_file_"
+    full_text_string = open("try.txt").read()
+    num_new_lines = full_text_string.count("\n")
+    number_small_files = int((float(num_new_lines) / 300.0) + 1)
+
+    file_num = 300
+    while file_num < (number_small_files)*300:
+        files.append(file_base_name + str(file_num))
+        file_num = file_num + 300
+        
