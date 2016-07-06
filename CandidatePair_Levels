@@ -1,10 +1,12 @@
 class CandidatePair_Levels:
     biomarker = None
     level = None
+    measurement_type = None
 
-    def __init__(self, biomarker, level):
+    def __init__(self, biomarker, level, measurement_type):
         self.biomarker = biomarker
         self.level = level
+        self.measurement_type = measurement_type
 
     def __repr__(self):
-        return "Biomarker: " + self.biomarker + " Level: " + self.level
+        return "Biomarker: " + self.biomarker + " Measurement Type: " + self.measurement_type + " Level: " + self.level
