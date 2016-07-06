@@ -8,7 +8,8 @@ def doEverything():
     sentences = parser.parseDocSentences()
 
     BM = BiomarkerCandidateGenerator.generateBiomarkerCandidates()
-    LM = levels_extractor.levels_extractor()
+    LM = levels_extractor.levelsGenerator()
+    
 
     possiblePairs = Relations(sentences, BM, LM)
     feats = possiblePairs.extract_features()
