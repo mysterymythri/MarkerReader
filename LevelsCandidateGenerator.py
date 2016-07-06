@@ -40,7 +40,6 @@ def levelsGenerator():
             print e.mention(attribute='words')
 
 
-levelsGenerator()
 
 
 
