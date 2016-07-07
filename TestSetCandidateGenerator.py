@@ -27,7 +27,7 @@ def parseDocIntoWords():
     return words
 
 
-def TestTypeGenerator(levels_entities):
+def TestSetGenerator(levels_entities):
     words = parseDocIntoWords()
     sentence_candidates = []
     all_levels_idxs = []
