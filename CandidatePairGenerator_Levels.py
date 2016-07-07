@@ -80,7 +80,7 @@ def doEverything():
             
     # 7- measurement_type + to be + level: "the median was 50 mL"
     def LF_typeIsALevel
-        return 1 if ('to be' in m.post_window3('lemmas', 1) and 'to be' in m.post_window2('lemmas',1) and abs(m.e3_idxs[0] - m.e2_idxs[0]) < 2) else 0 
+        return 1 if ('be' in m.post_window3('lemmas', 1) and 'be' in m.post_window2('lemmas',1) and abs(m.e3_idxs[0] - m.e2_idxs[0]) < 2) else 0 
     
     LFs = [LF_distance_far_marker_to_level, LF_distance_far_marker_to_measurement, LF_distance_close_marker_to_level, LF_distance_close_marker_to_measurement, LF_units, LF_distance_far_data_set_to_measurement]
     gts = []
