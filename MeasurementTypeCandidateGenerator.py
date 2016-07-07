@@ -36,6 +36,7 @@ def measurementTypeGenerator(levels_entities):
         sentence_candidates.append(words[level.sent_id])
 
     noun_regex = RegexNgramMatch(label='Nouns', regex_pattern=r'[A-Z]?NN[A-Z]?', ignore_case=True, match_attrib='poses')
-
-    E = Entities(sentence_candidates, noun_regex)
+    complete_obj_regex = RegexNgramMatch(label='Complete_Obj', regex_pattern=r'[J]{2,}\sNN[A-Z]?', ignore_case=True, match_attrib='poses')
+    CE = Union(noun_regex, complete_obj_regex)
+    E = Entities(sentence_candidates, CE)
     return E
