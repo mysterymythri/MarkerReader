@@ -68,7 +68,15 @@ def doEverything():
             return 1
         else:
             return 0
-        
+            
+            
+    # 6- distance far
+    def LF_distance_far_data_set_to_measurement(m):
+        distance = abs(m.e4_idxs[0] - m.e1_idxs[1])
+        if distance < 9:
+            return 0
+        else:
+            return -1 
     
     LFs = [LF_distance_far_marker_to_level, LF_distance_far_marker_to_measurement, LF_distance_close_marker_to_level, LF_distance_close_marker_to_measurement, LF_units]
     gts = []
