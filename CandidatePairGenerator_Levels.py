@@ -10,7 +10,7 @@ def doEverything():
     BM = BiomarkerCandidateGenerator.generateBiomarkerCandidates()
     L = LevelsCandidateGenerator.levelsGenerator()
     M = MeasurementTypeCandidateGenerator.measurementTypeGenerator(L)
-    TS = TestSetCandidateGenerator.testSetGenerator
+    TS = TestSetCandidateGenerator.testSetGenerator()
     
 
     possiblePairs = Relations(sentences, BM, L, M)
@@ -77,8 +77,10 @@ def doEverything():
             return 0
         else:
             return -1 
+            
     
-    LFs = [LF_distance_far_marker_to_level, LF_distance_far_marker_to_measurement, LF_distance_close_marker_to_level, LF_distance_close_marker_to_measurement, LF_units]
+    
+    LFs = [LF_distance_far_marker_to_level, LF_distance_far_marker_to_measurement, LF_distance_close_marker_to_level, LF_distance_close_marker_to_measurement, LF_units, LF_distance_far_data_set_to_measurement]
     gts = []
     uids = []
     for tuple in mindtaggerToTruth("tags4.tsv"):
