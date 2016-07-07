@@ -17,8 +17,6 @@ with open('AGR2_blood_biomarker.txt') as f:
             fout.writelines(g)
 
 
-
-
 def parseDocIntoWords(_filename):
     filename = _filename
     text = open(filename, "r").read()
@@ -30,7 +28,7 @@ def parseDocIntoWords(_filename):
     return words
 
 
-def TestSetGenerator():
+def testSetGenerator():
     allWords = []
     files = []
     file_base_name = "AGR2_small_file_"
