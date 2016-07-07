@@ -18,16 +18,46 @@ def doEverything():
     negationWords = ["not", "nor", "neither"]
 
 
-    # 1
-    def LF_distance(m):
+    # 1- distance far
+    def LF_distance_far_marker_to_level(m):
         # print m.lemmas
         # print m.dep_labels
         distance = abs(m.e2_idxs[0] - m.e1_idxs[0])
-        if distance < 8:
+        if distance < 10:
             return 0
         else:
             return -1
+        
+    # 2- distance far
+    def LF_distance_far_marker_to_measurement(m):
+        distance = abs(m.e3_idxs[0] - m.e1_idxs[0])
+        if distance < 10:
+            return 0
+        else:
+            return -1
+            
+            
+    # 3- distance close
+    def LF_distance_close_marker_to_level(m):
+        # print m.lemmas
+        # print m.dep_labels
+        distance = abs(m.e2_idxs[0] - m.e1_idxs[0])
+        if distance < 5:
+            return 1
+        else:
+            return 0
+        
+    # 4- distance close
+    def LF_distance_close_marker_to_measurement(m):
+        distance = abs(m.e3_idxs[0] - m.e1_idxs[0])
+        if distance < 5:
+            return 1
+        else:
+            return 0
+            
+            
     
+    # 5- units 
     def LF_units(m):
         found = False
         for unit in all_prefixes_units:
