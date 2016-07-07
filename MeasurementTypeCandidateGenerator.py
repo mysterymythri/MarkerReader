@@ -26,7 +26,7 @@ def parseDocIntoWords():
     return words
 
 
-def measurementGenerator(levels_entities):
+def measurementTypeGenerator(levels_entities):
     words = parseDocIntoWords()
     sentence_candidates = []
     all_levels_idxs = []
