@@ -17,17 +17,18 @@ def grouper(n, iterable, _filename, fillvalue=None):
     return izip_longest(fillvalue=fillvalue, *args)
 
 
-
+#Opens up a file and returns the Sentences
 def parseDocIntoWords(_filename):
     filename = _filename
     text = open(filename, "r").read()
     text = text.replace('\n', ',')
     # print text
     #re.findare.findall(r"[\w']+", DATA)ll(r"[\w']+", DATA)
-    words = text.split(',')
-    return words
+    dp = DocParser("try.txt")
+    return dp.parseDocSentences()
     #return strings
 
+#Returns the citations of the text
 def getCitations(_filename):
     allWords = []
     files = []
@@ -44,39 +45,52 @@ def getCitations(_filename):
         complexThings = parseDocIntoWords(file)
         for complexthing in complexThings:
             allWords.append(complexthing)
-        references = "References"
-        refIndex = allWords.index(references)
-        print refIndex
+        # references = "References"
+        # refIndex = allWords.index(references)
+        # print refIndex
     #print allWords
     return allWords
 
 
 def getAuthors(_filename):
     citations = getCitations(_filename=_filename)
-    print "no"
-    print citations
-    print "hi"
+    # print "no"
+    # print citations
+    # print "hi"
     capitalIndex1 = -1
     capitalIndex2 = -1
     authorList = []
     for x in citations:
-        # print type(x)
-        #CURRENT PROBLEM
-        if (x[0] != x[0].upper()):
-            #print 'hgfd'
-            citations.remove(x)
-        for y in x:
-            if (x[len(x)-1] == x[len(x)-1].upper()):
-                capitalIndex2 = len(x)-1
-        authorList.append(citations[capitalIndex1:capitalIndex2])
-        counter = 0
-        new = []
-    print authorList
-    return authorList
+        if("NNP" in x.poses):
+            authorList.append(x)
+        # if(len(x) <= 0):
+        #     continue
+        # # print type(x)
+        # #CURRENT PROBLEM
+        # if (x[0] != x[0].upper()):
+        #     #print 'hgfd'
+        #     citations.remove(x)
+        #
+        # for y in x:
+        #     if (x[len(x)-1] == x[len(x)-1].upper()):
+        #         capitalIndex2 = len(x)-1
+        # authorList.append(citations[0:capitalIndex2])
+        # counter = 0
+        # new = []
+    the_authors = []
+    for sentences in authorList:
+        the_text_string = ""
+        for word in sentences.words:
+            the_text_string += word + " "
+        broken_up = the_text_string.split(",")
+        for piece in broken_up:
+            the_authors.append(piece)
+    for author in the_authors:
+        print author
+    return the_authors
 
 def updateScores(_filename):
     n = 300
-
     with open(_filename) as f:
 
         for i, g in enumerate(grouper(n, f, fillvalue='',  _filename= _filename), 1):
@@ -86,5 +100,5 @@ def updateScores(_filename):
         #print x
         authorScores[authorScores.index(x)] += 1
 
-updateScores("try.txt")
+getAuthors("try.txt")
 #print authorScores
