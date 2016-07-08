@@ -13,7 +13,7 @@ def doEverything():
     TS = TestSetCandidateGenerator.testSetGenerator()
     
 
-    possiblePairs = Relations(sentences, BM, L, M)
+    possiblePairs = Relations(sentences, BM, L, M, TS)
     feats = possiblePairs.extract_features()
     otherModel = DDLiteModel(possiblePairs, feats)
     negationWords = ["not", "nor", "neither"]
