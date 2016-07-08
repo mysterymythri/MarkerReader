@@ -119,6 +119,13 @@ def doEverything():
                 return 1
         return 0
     
+    # 12- If the test data has the a (n = #) notation after it
+    def LF_n_equals_notation(m):
+        post = m.post_window4(attribute='text')
+        # Regex Expression for lemmas:       -LRB-\s?n\s?\W\s?[\d\.]+\s?-RRB-
+        # Regex Expression for text:         \(\s?n\s?\W\s?[\d\.]+\s?\)
+
+        
     
     
     LFs = [LF_distance_far_marker_to_level, LF_distance_far_marker_to_measurement, LF_distance_close_marker_to_level, LF_distance_close_marker_to_measurement, LF_units, LF_distance_far_data_set_to_measurement]
