@@ -82,6 +82,11 @@ def doEverything():
     def LF_typeIsALevel
         return 1 if ('be' in m.post_window3('lemmas', 1) and 'be' in m.post_window2('lemmas',1) and abs(m.e3_idxs[0] - m.e2_idxs[0]) < 2) else 0 
     
+    #8- Info + "of" + level
+    def LF_typeIsALevel
+        return 1 if ('of' in m.post_window3('lemmas', 2) and 'of' in m.pre_window2('lemmas',2)) else 0 
+    
+    
     LFs = [LF_distance_far_marker_to_level, LF_distance_far_marker_to_measurement, LF_distance_close_marker_to_level, LF_distance_close_marker_to_measurement, LF_units, LF_distance_far_data_set_to_measurement]
     gts = []
     uids = []
