@@ -17,8 +17,8 @@ def doEverything():
     possiblePairs = Relations(sentences, BM, L, M, TS)
     feats = possiblePairs.extract_features()
     otherModel = DDLiteModel(possiblePairs, feats)
-    keyWords_Measurement_Type = ["median", "mean", "standard deviation", "range", "level", "value", "concentration"]
-    keyWords_Test_Set = ["cohort", "normal", "subject", "patient", "group", "control", "sample", "candidate"]
+    keyWords_Measurement_Type = ["median", "mean", "standard deviation", "range", "level", "value", "concentration", "normal", "mode", "variance", "p="]
+    keyWords_Test_Set = ["cohort", "normal", "subject", "patient", "group", "control", "sample", "candidate", "case", "people", "individual", "human"]
     negationWords = ["not", "nor", "neither"]
 
 
