@@ -17,6 +17,7 @@ def doEverything():
     feats = possiblePairs.extract_features()
     otherModel = DDLiteModel(possiblePairs, feats)
     keyWords_Measurement_Type = ["median", "mean", "standard deviation", "range", "level", "value"]
+    keyWords_Test_Set = ["cohort", "normal", "subject", "patient"]
     negationWords = ["not", "nor", "neither"]
 
 
@@ -104,7 +105,18 @@ def doEverything():
                 #    return 1
                 return 1
         return 0
-    
+        
+        
+     # 11- If the test set contains common keywords
+    def LF_keyword_Test_Set(m):
+        for word in keyWords_Test_Set:
+            if (word in m.mention4(attribute='lemmas'):
+                #if presenceOfNot(m):
+                #    return -1
+                #else:
+                #    return 1
+                return 1
+        return 0
     
     
     
