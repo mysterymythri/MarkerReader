@@ -61,6 +61,7 @@ def doEverything():
             
     
     # 5- units 
+    # TODO: Add feature so that the LF checks if there is a unit or if there is a unit / unit
     def LF_units(m):
         found = False
         for unit in all_prefixes_units:
