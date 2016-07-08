@@ -79,11 +79,11 @@ def doEverything():
             return -1 
             
     # 7- measurement_type + to be + level: "the median was 50 mL"
-    def LF_typeIsALevel
+    def LF_typeIsALevel(m)
         return 1 if ('be' in m.post_window3('lemmas', 1) and 'be' in m.post_window2('lemmas',1) and abs(m.e3_idxs[0] - m.e2_idxs[0]) < 2) else 0 
     
     #8- Info + "of" + level: "Consistent with other reports, we observed a median (range) of 25 (6–170) ng/ml AGR2 in normal male subjects (n 1⁄4 18)"
-    def LF_infoOfLevel
+    def LF_infoOfLevel(m)
         return 1 if ('of' in m.post_window3('lemmas', 2) and 'of' in m.pre_window2('lemmas',2)) else 0 
     
     
