@@ -16,6 +16,7 @@ def doEverything():
     possiblePairs = Relations(sentences, BM, L, M, TS)
     feats = possiblePairs.extract_features()
     otherModel = DDLiteModel(possiblePairs, feats)
+    keyWords_Measurement_Type = ["median", "mean", "standard deviation", "range", "level", "value"]
     negationWords = ["not", "nor", "neither"]
 
 
@@ -82,9 +83,29 @@ def doEverything():
     def LF_typeIsALevel(m)
         return 1 if ('be' in m.post_window3('lemmas', 1) and 'be' in m.post_window2('lemmas',1) and abs(m.e3_idxs[0] - m.e2_idxs[0]) < 2) else 0 
     
-    #8- Info + "of" + level: "Consistent with other reports, we observed a median (range) of 25 (6–170) ng/ml AGR2 in normal male subjects (n 1⁄4 18)"
+    # 8- Info + "of" + level: "Consistent with other reports, we observed a median (range) of 25 (6–170) ng/ml AGR2 in normal male subjects (n 1⁄4 18)"
     def LF_infoOfLevel(m)
         return 1 if ('of' in m.post_window3('lemmas', 2) and 'of' in m.pre_window2('lemmas',2)) else 0 
+        
+    # 9- If not words are present    
+    #def presenceOfNot(m):
+    #    for word in negationWords:
+    #        if (word in m.post_window1('lemmas', 5)) and (word in m.pre_window2('lemmas', 5)):
+    #            return True
+    #    return False
+    
+    # 10- If the measurement type contains common keywords
+    def LF_keyword_Measurement_Type(m):
+        for word in keyWords_Measurement_Type:
+            if (word in m.mention3(attribute='lemmas'):
+                #if presenceOfNot(m):
+                #    return -1
+                #else:
+                #    return 1
+                return 1
+        return 0
+    
+    
     
     
     LFs = [LF_distance_far_marker_to_level, LF_distance_far_marker_to_measurement, LF_distance_close_marker_to_level, LF_distance_close_marker_to_measurement, LF_units, LF_distance_far_data_set_to_measurement]
